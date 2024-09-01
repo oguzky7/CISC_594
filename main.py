@@ -2,35 +2,9 @@ from simpletron.cpu import CPU
 from simpletron.simpletron_helpers import summarize_instructions
 
 def show_help():
-    help_text = """
-*** Simpletron Help ***
-
-The Simpletron is a hypothetical computer that runs programs written in Simpletron Machine Language (SML). 
-You can enter SML instructions to create programs that the Simpletron will execute.
-
-Basic Instructions:
-- Each instruction must be a signed 4-digit integer.
-- The first two digits represent the operation code (opcode).
-- The last two digits represent the operand (memory address to operate on).
-
-Special Commands:
-- Enter -99999 to stop entering your program and start execution.
-- Enter 'help' at any time to display this help message.
-
-Example Program to Add Two Numbers:
-00 ? +1007  (READ input into address 07)
-01 ? +1008  (READ input into address 08)
-02 ? +2007  (LOAD from address 07)
-03 ? +3008  (ADD value at address 08)
-04 ? +2109  (STORE result in address 09)
-05 ? +1109  (WRITE value at address 09)
-06 ? +4300  (HALT the program)
-
-To test the program, you will be prompted to enter numbers after the program is loaded.
-
-Enjoy using Simpletron!
-"""
-    print(help_text)
+    with open('help.txt', 'r') as help_file:
+            help_text = help_file.read()
+            print(help_text)
 
 def load_program(cpu):
     print("*** Welcome to Simpletron! ***")

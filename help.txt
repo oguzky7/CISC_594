@@ -1,0 +1,43 @@
+*** Simpletron Help ***
+
+The Simpletron is a hypothetical computer that runs programs written in Simpletron Machine Language (SML).
+You can enter SML instructions to create programs that the Simpletron will execute.
+
+Basic Instructions:
+- Each instruction must be a signed 4-digit integer.
+- The first two digits represent the operation code (opcode).
+- The last two digits represent the operand (memory address to operate on).
+
+Special Commands:
+- Enter -99999 to stop entering your program and start execution.
+- Enter 'help' at any time to display this help message.
+
+Operations Supported:
+- 10: READ - Read input and store it in a memory address.
+- 11: WRITE - Output the value stored in a memory address.
+- 20: LOAD - Load a value from a memory address into the accumulator.
+- 21: STORE - Store the value in the accumulator into a memory address.
+- 30: ADD - Add a value from a memory address to the accumulator.
+- 31: SUBTRACT - Subtract a value from a memory address from the accumulator.
+- 32: DIVIDE - Divide the accumulator by a value from a memory address.
+- 33: MULTIPLY - Multiply the accumulator by a value from a memory address.
+- 34: MOD - Perform modulus operation on the accumulator with a value from a memory address.
+- 35: EXP - Raise the accumulator to the power of a value from a memory address.
+- 36: NEWLINE - Print a newline character.
+- 40: BRANCH - Set the instruction counter to a specific memory address.
+- 41: BRANCH_IF_ZERO - Branch if the accumulator is zero.
+- 42: BRANCH_IF_NEGATIVE - Branch if the accumulator is negative.
+- 43: HALT - Stop program execution.
+
+Example Program to Add Two Numbers:
+00 ? +1007  (READ input into address 07)
+01 ? +1008  (READ input into address 08)
+02 ? +2007  (LOAD from address 07)
+03 ? +3008  (ADD value at address 08)
+04 ? +2109  (STORE result in address 09)
+05 ? +1109  (WRITE value at address 09)
+06 ? +4300  (HALT the program)
+
+To test the program, you will be prompted to enter numbers after the program is loaded.
+
+Enjoy using Simpletron!
