@@ -65,15 +65,42 @@ def load_program(cpu):
     print("\n*** Program loading completed ***")
     print("*** Program execution begins ***\n")
 
+def load_program_from_file(cpu, filename):
+    try:
+        with open(filename, 'r') as file:
+            for line_number, line in enumerate(file):
+                instruction = int(line.strip())
+                cpu.memory.store(line_number, instruction)
+        print("\n*** Program loading completed from file ***")
+        print("*** Program execution begins ***\n")
+    except FileNotFoundError:
+        print(f"Error: File '{filename}' not found.")
+    except ValueError:
+        print(f"Error: Invalid instruction in file '{filename}'.")
+
 def main():
     cpu = CPU()
 
-    # Load and run the program
-    load_program(cpu)
+    # Ask user whether to enter instructions manually or load from a file
+    mode = input("Would you like to (1) enter the program manually or (2) load it from a file? Enter 1 or 2: ").strip()
+
+    if mode == '1':
+        load_program(cpu)
+    elif mode == '2':
+        filename = input("Enter the filename: ").strip()
+        load_program_from_file(cpu, filename)
+    else:
+        print("Invalid option. Exiting.")
+        return
+
+    # Run the program
     cpu.run()
 
     # Summarize the actions
     summarize_instructions(cpu, cpu.instruction_set.actions)
+    
+    # Perform a memory dump after execution
+    cpu.memory.dump()
     
 if __name__ == "__main__":
     main()

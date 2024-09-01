@@ -1,3 +1,5 @@
+# memory.py
+
 class Memory:
     def __init__(self, size=100):
         self.size = size
@@ -19,5 +21,6 @@ class Memory:
             raise ValueError(f"Invalid memory address: {address}")
 
     def dump(self):
+        print("\n*** Memory Dump ***")
         for i in range(0, self.size, 10):
             print(f"{i:02} - {i + 9:02}: {' '.join(f'{x:05}' for x in self.memory[i:i + 10])}")
