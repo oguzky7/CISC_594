@@ -1,38 +1,10 @@
-# main.py
-
 from simpletron.cpu import CPU
 from simpletron.simpletron_helpers import summarize_instructions
 
 def show_help():
-    help_text = """
-*** Simpletron Help ***
-
-The Simpletron is a hypothetical computer that runs programs written in Simpletron Machine Language (SML). 
-You can enter SML instructions to create programs that the Simpletron will execute.
-
-Basic Instructions:
-- Each instruction must be a signed 4-digit integer.
-- The first two digits represent the operation code (opcode).
-- The last two digits represent the operand (memory address to operate on).
-
-Special Commands:
-- Enter -99999 to stop entering your program and start execution.
-- Enter 'help' at any time to display this help message.
-
-Example Program to Add Two Numbers:
-00 ? +1007  (READ input into address 07)
-01 ? +1008  (READ input into address 08)
-02 ? +2007  (LOAD from address 07)
-03 ? +3008  (ADD value at address 08)
-04 ? +2109  (STORE result in address 09)
-05 ? +1109  (WRITE value at address 09)
-06 ? +4300  (HALT the program)
-
-To test the program, you will be prompted to enter numbers after the program is loaded.
-
-Enjoy using Simpletron!
-"""
-    print(help_text)
+    with open('help.txt', 'r') as help_file:
+            help_text = help_file.read()
+            print(help_text)
 
 def load_program(cpu):
     print("*** Welcome to Simpletron! ***")
@@ -65,7 +37,7 @@ def load_program(cpu):
     print("\n*** Program loading completed ***")
     print("*** Program execution begins ***\n")
 
-def load_program_from_file(cpu, filename='program.txt'):
+def load_program_from_file(cpu, filename='program2.txt'):
     try:
         with open(filename, 'r') as file:
             for line_number, line in enumerate(file):
@@ -92,15 +64,21 @@ def load_program_from_file(cpu, filename='program.txt'):
 def main():
     cpu = CPU()
 
-    # Ask user whether to enter instructions manually or load from a file
-    mode = input("Would you like to (1) enter the program manually or (2) load it from a file? Enter 1 or 2: ").strip()
+    # Ask user whether to enter instructions manually, load from a file, or load a specific file for test3
+    mode = input("Would you like to (1) enter the program manually, (2) load 'program2.txt', or (3) load 'program3.txt'? Enter 1, 2, 3 or help: ").strip()
 
     if mode == '1':
         load_program(cpu)
     elif mode == '2':
-        load_program_from_file(cpu)  # Default to 'program.txt'
+        load_program_from_file(cpu, 'program2.txt')
+    elif mode == '3':
+        load_program_from_file(cpu, 'program3.txt')
+    elif mode =='help':
+        show_help()
+        return
     else:
         print("Invalid option. Exiting.")
+        show_help()
         return
 
     # Run the program
