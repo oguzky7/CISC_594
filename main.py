@@ -65,12 +65,23 @@ def load_program(cpu):
     print("\n*** Program loading completed ***")
     print("*** Program execution begins ***\n")
 
-def load_program_from_file(cpu, filename):
+def load_program_from_file(cpu, filename='program.txt'):
     try:
         with open(filename, 'r') as file:
             for line_number, line in enumerate(file):
-                instruction = int(line.strip())
-                cpu.memory.store(line_number, instruction)
+                line = line.strip()
+                if not line:
+                    continue  # Skip empty lines
+                try:
+                    instruction = int(line)
+                    if instruction == -99999:
+                        break  # Stop reading further instructions
+                    if not -9999 <= instruction <= 9999:
+                        raise ValueError(f"Instruction out of range: {instruction} at line {line_number + 1}")
+                    cpu.memory.store(line_number, instruction)
+                except ValueError as ve:
+                    print(f"Error parsing line {line_number + 1}: '{line}' - {ve}")
+                    return
         print("\n*** Program loading completed from file ***")
         print("*** Program execution begins ***\n")
     except FileNotFoundError:
@@ -87,8 +98,7 @@ def main():
     if mode == '1':
         load_program(cpu)
     elif mode == '2':
-        filename = input("Enter the filename: ").strip()
-        load_program_from_file(cpu, filename)
+        load_program_from_file(cpu)  # Default to 'program.txt'
     else:
         print("Invalid option. Exiting.")
         return
