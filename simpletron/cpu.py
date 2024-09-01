@@ -42,6 +42,7 @@ class CPU:
             print(f"\n*** Simpletron execution terminated with error: {e} ***")
             self.dump()
 
+
     def dump(self):
         print("\n*** Memory Dump ***")
         print(f"Accumulator:            {self.accumulator:+05}")
@@ -53,4 +54,3 @@ class CPU:
         print("\nMEMORY:")
         for i in range(0, self.memory.size, 10):
             print(f"{i:02}: " + " ".join(f"{self.memory.memory[j]:+05}" for j in range(i, i+10)))
-

@@ -1,5 +1,3 @@
-# main.py
-
 from simpletron.cpu import CPU
 from simpletron.simpletron_helpers import summarize_instructions
 
@@ -65,7 +63,7 @@ def load_program(cpu):
     print("\n*** Program loading completed ***")
     print("*** Program execution begins ***\n")
 
-def load_program_from_file(cpu, filename='program.txt'):
+def load_program_from_file(cpu, filename='program2.txt'):
     try:
         with open(filename, 'r') as file:
             for line_number, line in enumerate(file):
@@ -92,15 +90,21 @@ def load_program_from_file(cpu, filename='program.txt'):
 def main():
     cpu = CPU()
 
-    # Ask user whether to enter instructions manually or load from a file
-    mode = input("Would you like to (1) enter the program manually or (2) load it from a file? Enter 1 or 2: ").strip()
+    # Ask user whether to enter instructions manually, load from a file, or load a specific file for test3
+    mode = input("Would you like to (1) enter the program manually, (2) load 'program2.txt', or (3) load 'program3.txt'? Enter 1, 2, 3 or help: ").strip()
 
     if mode == '1':
         load_program(cpu)
     elif mode == '2':
-        load_program_from_file(cpu)  # Default to 'program.txt'
+        load_program_from_file(cpu, 'program2.txt')
+    elif mode == '3':
+        load_program_from_file(cpu, 'program3.txt')
+    elif mode =='help':
+        show_help()
+        return
     else:
         print("Invalid option. Exiting.")
+        show_help()
         return
 
     # Run the program
