@@ -1,7 +1,8 @@
-Oguz Kaan Yildirim, 
-Veys Diyar Yurtsever, 
+Oguz Kaan Yildirim
 
-https://github.com/oguzky7/CISC_594, 
+Veys Diyar Yurtsever
+
+https://github.com/oguzky7/CISC_594
 
 CISC 594 Version Control Assignment
 
