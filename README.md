@@ -1,4 +1,6 @@
-Oguz Kaan Yildirim CISC 594 Version Control Assignment
+Oguz Kaan Yildirim 
+Veys Diyar Yurtsever
+CISC 594 Version Control Assignment
 
 # Simpletron Simulator
 
